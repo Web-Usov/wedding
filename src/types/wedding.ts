@@ -10,9 +10,17 @@ export interface WeddingCouple {
   description: string;
 }
 
+export interface WeddingLocation {
+  name: string;
+  address: string;
+  description: string;
+  image: string;
+  mapUrl: string;
+}
+
 export interface WeddingData {
   couple: WeddingCouple;
   date: string;
-  location: string;
+  location: WeddingLocation;
   program: WeddingEvent[];
 }

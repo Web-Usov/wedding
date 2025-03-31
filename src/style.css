@@ -31,6 +31,10 @@ body {
   padding: 0;
 }
 
+form {
+  display: block;
+}
+
 h1,
 h2,
 h3 {
@@ -53,7 +57,6 @@ h3 {
   align-items: center;
   text-align: center;
   color: var(--accent);
-  scroll-snap-align: start;
 }
 
 .hero-image {
@@ -69,6 +72,9 @@ h3 {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .section-title {
@@ -114,7 +120,7 @@ h3 {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .about-photos {
@@ -311,6 +317,20 @@ h3 {
   bottom: -8px;
 }
 
+.page-nav-dot-title {
+  right: 20px;
+  position: absolute;
+  width: auto;
+  display: block;
+  text-wrap: nowrap;
+  top: -60%;
+}
+@media screen and (max-width: 768px) {
+  .page-nav-dot-title {
+    display: none;
+  }
+}
+
 /* Модальное окно */
 .modal {
   display: none;
@@ -379,12 +399,92 @@ h3 {
   }
 }
 
+/* Стили для секции "Локация" */
+.location-section {
+  background-color: var(--primary);
+}
+
+.location-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.location-info h3 {
+  color: var(--accent);
+  font-size: 1.8rem;
+}
+
+.location-info .address {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.location-media {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.location-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.location-map {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для секции локации */
+.location-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.location-image {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.location-map {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 10px;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .section {
-    padding: 50px 0;
+    padding: 50px 5px;
     height: auto;
     min-height: 100vh;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .location-content {
+    grid-template-columns: 1fr;
   }
 
   .about-content {
