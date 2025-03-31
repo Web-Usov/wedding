@@ -94,13 +94,8 @@ export const getHtml = async (props: Props) => {
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="guests">Количество гостей</label>
-          <select id="guests" name="guests">
-            <option value="1">1 (только я)</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+          <button type="button" id="add-guest" class="btn btn-secondary">Добавить гостя</button>
+          <div id="guest-fields"></div>
         </div>
         <div class="form-group">
           <label for="message">Ваше сообщение</label>

@@ -470,6 +470,39 @@ h3 {
   border-radius: 10px;
 }
 
+/* Стили для добавления гостей */
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: var(--accent);
+}
+
+.guests-container {
+  display: grid;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.guest-field {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .section {
