@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.hover\:bg-accent {
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--accent);
+    }
+  }
+}
+
+.hover\:bg-primary {
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--primary);
+    }
+  }
+}
+
+.hover\:bg-secondary {
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--secondary);
+    }
+  }
+}
+
+:root {
+  /* Цветовая палитра */
+  --primary: #f7ead9; /* Кремовый */
+  --secondary: #eeae9d; /* Светло-розовый */
+  --accent: #6b4a2a; /* Коричневый */
+  --text: #3a3a3a;
+  --gold: #a67c52; /* Бежевый */
+
+  /* Шрифты */
+  --heading-font: "Playfair Display", serif;
+  --body-font: "Montserrat", sans-serif;
+}
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--text);
+  background-color: var(--primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-anchor: none;
+}
