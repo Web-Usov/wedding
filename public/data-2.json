@@ -45,6 +45,7 @@
   ],
   "gallery": [],
   "dressCode": {
+    "enabled": true,
     "colors": [
       {
         "name": "Голубой",

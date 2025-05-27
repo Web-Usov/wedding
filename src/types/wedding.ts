@@ -19,6 +19,7 @@ export interface WeddingLocation {
 }
 
 export interface DressCode {
+  enabled: boolean;
   description?: string;
   colors: {
     name: string;

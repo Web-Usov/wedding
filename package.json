@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "pnpm run build && bash -c 'set -a && source .env && set +a && ./scripts/deploy.sh'"
+    "deploy": "sh './scripts/deploy.sh'"
   },
   "devDependencies": {
     "@types/locomotive-scroll": "^4.1.4",
@@ -16,6 +16,7 @@
   },
   "packageManager": "pnpm@10.3.0+sha512.ee592eda8815a8a293c206bb0917c4bb0ff274c50def7cbc17be05ec641fc2d1b02490ce660061356bd0d126a4d7eb2ec8830e6959fb8a447571c631d5a2442d",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.44.1",
     "@tailwindcss/vite": "^4.1.7",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
