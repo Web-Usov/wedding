@@ -1,5 +1,8 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
+import PhoneInputBase from "react-phone-number-input/input-max";
 import { twMerge } from "tailwind-merge";
+import { ErrorLabel, Label } from "./InputField.ui";
+// import "react-phone-number-input/style.css";
 
 type InputFieldProps = PropsWithChildren & {
   id: string;
@@ -7,7 +10,7 @@ type InputFieldProps = PropsWithChildren & {
   type?: string;
   required?: boolean;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeValue: (value: string | undefined) => void;
   className?: string;
   wrapperClassName?: string;
   placeholder?: string;
@@ -15,14 +18,14 @@ type InputFieldProps = PropsWithChildren & {
   [key: `data-${string}`]: string | boolean | undefined;
 };
 
-export const InputField = ({
+export const PhoneInput = ({
   children,
   id,
   name,
   type = "text",
   required = false,
   value,
-  onChange,
+  onChangeValue,
   placeholder,
   className,
   wrapperClassName,
@@ -39,13 +42,19 @@ export const InputField = ({
       )}
     >
       <Label htmlFor={id}>{children}</Label>
-      <input
-        type={type}
+      <PhoneInputBase
+        international={true}
+        country="RU"
+        withCountryCallingCode
         id={id}
         name={name}
         required={required}
-        value={value}
-        onChange={onChange}
+        value={value.substring(0, 12)}
+        onChange={(value: string | undefined) => {
+          const formatted = (value ?? "").substring(0, 12);
+          console.debug("Formatted phone value:", formatted);
+          onChangeValue(formatted);
+        }}
         placeholder={placeholder}
         className={twMerge(
           "p-4 border-2 border-(--secondary) rounded-lg font-body text-base transition-all focus:outline-none focus:border-(--accent) focus:ring-2 focus:ring-(--accent)/20 bg-pink-50/5 w-full",
@@ -54,53 +63,9 @@ export const InputField = ({
             : "",
           className
         )}
+        maxLength={16}
       />
       <ErrorLabel htmlFor={id}>{error}</ErrorLabel>
     </div>
   );
 };
-
-export function ErrorLabel({
-  children,
-  ...props
-}: PropsWithChildren<React.LabelHTMLAttributes<HTMLLabelElement>>) {
-  return (
-    <label
-      className="font-heading text-accent text-sm text-red-500 absolute top-full"
-      {...props}
-    >
-      {children}
-    </label>
-  );
-}
-
-export function ErrorMessage({
-  children,
-  className,
-
-  ...props
-}: PropsWithChildren<React.HTMLAttributes<HTMLSpanElement>>) {
-  return (
-    <span
-      className={twMerge("text-red-500 text-sm font-heading", className)}
-      {...props}
-    >
-      {children}
-    </span>
-  );
-}
-
-export function Label({
-  children,
-  className,
-  ...props
-}: PropsWithChildren<React.LabelHTMLAttributes<HTMLLabelElement>>) {
-  return (
-    <label
-      className={twMerge("font-heading text-(--accent) text-base", className)}
-      {...props}
-    >
-      {children}
-    </label>
-  );
-}

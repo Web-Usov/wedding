@@ -5,23 +5,36 @@ import LocationSection from "./components/3-LocationSection";
 import ProgramSection from "./components/4-ProgramSection";
 import DressCodeSection from "./components/6-DressCodeSection";
 import RSVPSection from "./components/5-RSVPSection";
+import { Disabled } from "./components/0-Disabled.component";
+import { useRef } from "react";
+import { useSectionBackground } from "./hooks/useSectionBackground";
 
-function App(props: { weddingData: WeddingData }) {
-  const { weddingData } = props;
+function App({ weddingData }: { weddingData: WeddingData }) {
+  const ref = useRef<HTMLDivElement>(null);
 
+  useSectionBackground({
+    parent: ref,
+    path: "/wedding-bg",
+    loop: 3,
+    imageFormat: "png",
+  });
+
+  if (weddingData.enabled === false) {
+    return (
+      <div ref={ref}>
+        <Disabled />
+      </div>
+    );
+  }
   return (
-    <div>
-      <HeroSection weddingData={weddingData} bgImageUrl="/wedding-bg-1.png" />
+    <div ref={ref}>
+      <HeroSection weddingData={weddingData} />
       <AboutSection weddingData={weddingData} />
-      <LocationSection
-        weddingData={weddingData}
-        bgImageUrl="/wedding-bg-2.png"
-      />
-      <DressCodeSection weddingData={weddingData} />
-      <ProgramSection
-        weddingData={weddingData}
-        bgImageUrl="/wedding-bg-3.png"
-      />
+      <LocationSection weddingData={weddingData} />
+      {weddingData.dressCode?.enabled && (
+        <DressCodeSection weddingData={weddingData} />
+      )}
+      <ProgramSection weddingData={weddingData} />
       {/* <GallerySection weddingData={weddingData} /> */}
       <RSVPSection />
     </div>

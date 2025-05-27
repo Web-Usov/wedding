@@ -5,8 +5,7 @@ export interface WeddingEvent {
 }
 
 export interface WeddingCouple {
-  bride: string;
-  groom: string;
+  title: string;
   description: string;
 }
 
@@ -28,10 +27,11 @@ export interface DressCode {
 }
 
 export interface WeddingData {
+  enabled?: boolean;
   couple: WeddingCouple;
   date: string;
   location: WeddingLocation;
   program: WeddingEvent[];
   gallery: string[];
-  dressCode: DressCode | null;
+  dressCode?: DressCode;
 }
