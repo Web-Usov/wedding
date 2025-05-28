@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-// import PhoneInput from "react-phone-number-input/input";
+import { useToast } from "../hooks/useToast";
+
 import {
   Button,
   Section,
@@ -12,9 +13,11 @@ import {
   RadioButton,
   MultiSelect,
   PhoneInput,
+  Toast,
 } from "./ui";
 import { AttendanceStatus, RSVP } from "../types/RSVP";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
+import { ApiClient } from "../main";
 
 interface Props extends SectionBackgroundProps {}
 
@@ -24,6 +27,7 @@ const hasErrors = (fields: Record<keyof RSVP, string>) => {
   return Object.values(fields).some((error) => error.length > 0);
 };
 
+const FORM_ENV = import.meta.env.VITE_FORM_ENV as string;
 export default function RSVPSection({ bgImageUrl }: Props) {
   const [formData, setFormData] = useState<RSVP>({
     name: "",
@@ -44,10 +48,15 @@ export default function RSVPSection({ bgImageUrl }: Props) {
       guestName: "",
       drinks: "",
       allergies: "",
+      apiError: "",
     });
   };
 
-  const [formErrors, setFormErrors] = useState<Record<keyof RSVP, string>>({
+  const [formErrors, setFormErrors] = useState<
+    Record<keyof RSVP, string> & {
+      apiError: string;
+    }
+  >({
     name: "",
     phone: "",
     message: "",
@@ -55,12 +64,20 @@ export default function RSVPSection({ bgImageUrl }: Props) {
     guestName: "",
     drinks: "",
     allergies: "",
+    apiError: "",
   });
+
+  const [loading, setLoading] = useState(false);
+  const { showToast, toastMessage, toastType, show, hide } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const tempErrors: Record<keyof RSVP, string> = {
+    if (loading) {
+      return;
+    }
+
+    const tempErrors: Record<keyof RSVP, string> & { apiError: string } = {
       name: "",
       phone: "",
       message: "",
@@ -68,6 +85,7 @@ export default function RSVPSection({ bgImageUrl }: Props) {
       guestName: "",
       drinks: "",
       allergies: "",
+      apiError: "",
     };
 
     if (!formData.name) {
@@ -113,7 +131,17 @@ export default function RSVPSection({ bgImageUrl }: Props) {
     }
     resetErrors();
 
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    ApiClient.post({ ...formData, environment: FORM_ENV }).then((res) => {
+      setLoading(false);
+      if (res) {
+        show("Ваше приглашение успешно отправлено!", "success");
+        setFormErrors({ ...formErrors, apiError: "" });
+      } else {
+        show("Произошла ошибка при отправке. Попробуйте позже.", "error");
+        setFormErrors({ ...formErrors, apiError: "Произошла ошибка." });
+      }
+    });
   };
 
   const handleAttendanceChange = (status: AttendanceStatus) => {
@@ -145,6 +173,7 @@ export default function RSVPSection({ bgImageUrl }: Props) {
         <Form
           onSubmit={handleSubmit}
           className="max-w-2xl w-full transition-all"
+          aria-disabled={loading}
         >
           <InputField
             id="name"
@@ -236,11 +265,21 @@ export default function RSVPSection({ bgImageUrl }: Props) {
           >
             Пожелания и комментарии
           </TextareaField>
-          <Button type="submit" className="hover:-translate-y-1">
+          <Button
+            loading={loading}
+            type="submit"
+            className="hover:-translate-y-1"
+            disabled={loading || hasErrors(formErrors)}
+          >
             Отправить
           </Button>
         </Form>
       </SectionContainer>
+      {showToast && (
+        <Toast type={toastType} onClose={hide}>
+          {toastMessage}
+        </Toast>
+      )}
     </Section>
   );
 }

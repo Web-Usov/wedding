@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import App from "./App";
 import "./main.css";
+import { NocodbClient } from "./nocodb";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,6 +15,8 @@ if (!weddingPart || typeof weddingPart !== "string") {
 }
 
 const weddingDataUrl = `/data-${weddingPart}.json`;
+
+export const ApiClient = NocodbClient.connect();
 
 fetch(weddingDataUrl)
   .then((res) => res.json())

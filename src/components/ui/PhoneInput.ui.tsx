@@ -52,7 +52,6 @@ export const PhoneInput = ({
         value={value.substring(0, 12)}
         onChange={(value: string | undefined) => {
           const formatted = (value ?? "").substring(0, 12);
-          console.debug("Formatted phone value:", formatted);
           onChangeValue(formatted);
         }}
         placeholder={placeholder}
