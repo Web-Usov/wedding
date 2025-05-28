@@ -135,10 +135,10 @@ export default function RSVPSection({ bgImageUrl }: Props) {
     ApiClient.post({ ...formData, environment: FORM_ENV }).then((res) => {
       setLoading(false);
       if (res) {
-        show("Ваше приглашение успешно отправлено!", "success");
+        show("👍 Ваше приглашение успешно отправлено!", "success");
         setFormErrors({ ...formErrors, apiError: "" });
       } else {
-        show("Произошла ошибка при отправке. Попробуйте позже.", "error");
+        show("☹️ Произошла ошибка при отправке. Попробуйте позже.", "error");
         setFormErrors({ ...formErrors, apiError: "Произошла ошибка." });
       }
     });

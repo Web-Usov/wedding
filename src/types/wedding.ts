@@ -12,7 +12,7 @@ export interface WeddingCouple {
 export interface WeddingLocation {
   name: string;
   address: string;
-  description: string;
+  description?: string;
   image: string;
   mapUrl: string;
 }
