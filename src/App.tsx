@@ -8,6 +8,8 @@ import RSVPSection from "./components/5-RSVPSection";
 import { Disabled } from "./components/0-Disabled.component";
 import { useRef } from "react";
 import { useSectionBackground } from "./hooks/useSectionBackground";
+import FooterSection from "./components/7-FooterSection";
+import CalendarSection from "./components/2.1-CalendarSection";
 
 function App({ weddingData }: { weddingData: WeddingData }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,13 +32,14 @@ function App({ weddingData }: { weddingData: WeddingData }) {
     <div ref={ref}>
       <HeroSection weddingData={weddingData} />
       <AboutSection weddingData={weddingData} />
+      <CalendarSection weddingData={weddingData} />
       <LocationSection weddingData={weddingData} />
       {weddingData.dressCode?.enabled && (
         <DressCodeSection weddingData={weddingData} />
       )}
       <ProgramSection weddingData={weddingData} />
-      {/* <GallerySection weddingData={weddingData} /> */}
       <RSVPSection />
+      <FooterSection weddingData={weddingData} />
     </div>
   );
 }

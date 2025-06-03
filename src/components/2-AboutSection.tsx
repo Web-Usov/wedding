@@ -28,6 +28,7 @@ export default function AboutSection({
             </p>
           ))}
         </div>
+        {/* <SaveTheDateCalendar date={date} /> */}
       </SectionContainer>
     </Section>
   );

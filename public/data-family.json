@@ -3,13 +3,25 @@
     "title": "Дорогие родные и близкие!",
     "description": "Наша любовь наконец-то решила оформиться в нечто большее — и мы не представляем этот день без вас! Для нас важно, чтобы рядом были самые близкие люди. Давайте вместе наполним этот день смехом, улыбками и счастьем!"
   },
-  "date": "3.07.2025",
-  "location": {
-    "name": "Дворец бракосочетания",
-    "address": "Самара, Молодогвардейская ул., 238",
-    "image": "/wedding-place-1.jpg",
-    "mapUrl": "https://yandex.ru/profile/-/CHCO5GIi"
+  "date": {
+    "day": 3,
+    "month": 7,
+    "year": 2025
   },
+  "locations": [
+    {
+      "name": "Дворец бракосочетания",
+      "address": "Самара, Молодогвардейская ул., 238",
+      "image": "/wedding-place-1.jpg",
+      "mapUrl": "https://yandex.ru/profile/-/CHCO5GIi"
+    },
+    {
+      "name": "Ресторан 'Seven'",
+      "address": "Самара, Ульяновская ул., 8",
+      "image": "/seven.jpg",
+      "mapUrl": "https://yandex.ru/maps/-/CHCOBPJY"
+    }
+  ],
   "program": [
     {
       "time": "16:20",

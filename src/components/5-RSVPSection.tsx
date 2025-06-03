@@ -27,7 +27,9 @@ const hasErrors = (fields: Record<keyof RSVP, string>) => {
   return Object.values(fields).some((error) => error.length > 0);
 };
 
-const FORM_ENV = import.meta.env.VITE_FORM_ENV as string;
+const FORM_ENV = import.meta.env.DEV
+  ? import.meta.env.VITE_WEDDING_PART
+  : ("develop" as string);
 export default function RSVPSection({ bgImageUrl }: Props) {
   const [formData, setFormData] = useState<RSVP>({
     name: "",
@@ -112,7 +114,10 @@ export default function RSVPSection({ bgImageUrl }: Props) {
       tempErrors.guestName = "Имя гостя должно быть не менее 2 символов.";
     }
 
-    if (formData.drinks.length === 0) {
+    if (
+      formData.drinks.length === 0 &&
+      formData.attendanceStatus !== AttendanceStatus.not
+    ) {
       tempErrors.drinks = "Пожалуйста, выберите хотя бы один напиток.";
     }
 
@@ -135,7 +140,7 @@ export default function RSVPSection({ bgImageUrl }: Props) {
     ApiClient.post({ ...formData, environment: FORM_ENV }).then((res) => {
       setLoading(false);
       if (res) {
-        show("👍 Ваше приглашение успешно отправлено!", "success");
+        show("👍 Ваше ответ успешно отправлен!", "success");
         setFormErrors({ ...formErrors, apiError: "" });
       } else {
         show("☹️ Произошла ошибка при отправке. Попробуйте позже.", "error");

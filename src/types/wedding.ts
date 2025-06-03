@@ -1,3 +1,5 @@
+import { ShortDate } from "./short-date";
+
 export interface WeddingEvent {
   time: string;
   event: string;
@@ -29,8 +31,8 @@ export interface DressCode {
 export interface WeddingData {
   enabled?: boolean;
   couple: WeddingCouple;
-  date: string;
-  location: WeddingLocation;
+  date: ShortDate;
+  locations: WeddingLocation[];
   program: WeddingEvent[];
   gallery: string[];
   dressCode?: DressCode;

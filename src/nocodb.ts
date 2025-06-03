@@ -31,9 +31,7 @@ export class NocodbClient {
     if (!connectParams.viewId) {
       throw new Error("VITE_NOCODB_VIEW_ID is not defined");
     }
-    console.log(
-      `NocodbClient connected to table ${connectParams.tableId} with view ${connectParams.viewId}`
-    );
+    console.log(`NocodbClient connected to table`);
   }
   public static connect(params: Partial<NocodbClientConnect> = {}) {
     const connectParams = { ...NocodbClient.defaultConnectParams, ...params };
