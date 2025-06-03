@@ -18,6 +18,7 @@ import {
 import { AttendanceStatus, RSVP } from "../types/RSVP";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { ApiClient } from "../main";
+import { config } from "../config";
 
 interface Props extends SectionBackgroundProps {}
 
@@ -27,9 +28,6 @@ const hasErrors = (fields: Record<keyof RSVP, string>) => {
   return Object.values(fields).some((error) => error.length > 0);
 };
 
-const FORM_ENV = import.meta.env.DEV
-  ? import.meta.env.VITE_WEDDING_PART
-  : ("develop" as string);
 export default function RSVPSection({ bgImageUrl }: Props) {
   const [formData, setFormData] = useState<RSVP>({
     name: "",
@@ -137,10 +135,10 @@ export default function RSVPSection({ bgImageUrl }: Props) {
     resetErrors();
 
     setLoading(true);
-    ApiClient.post({ ...formData, environment: FORM_ENV }).then((res) => {
+    ApiClient.post({ ...formData, environment: config.formEnv }).then((res) => {
       setLoading(false);
       if (res) {
-        show("👍 Ваше ответ успешно отправлен!", "success");
+        show("👍 Ваш ответ успешно отправлен!", "success");
         setFormErrors({ ...formErrors, apiError: "" });
       } else {
         show("☹️ Произошла ошибка при отправке. Попробуйте позже.", "error");

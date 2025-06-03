@@ -46,6 +46,7 @@ export default function DressCodeSection({ weddingData, bgImageUrl }: Props) {
             <li>
               Пожалуйста, не надевайте полностью белое (это цвет невесты).
             </li>
+            <li>Возьмите с собой обувь на плоском ходу.</li>
           </ul>
 
           <h3 className="text-xl font-semibold mb-2">Для мужчин:</h3>

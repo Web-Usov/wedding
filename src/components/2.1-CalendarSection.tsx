@@ -1,6 +1,6 @@
 import { WeddingData } from "../types/wedding";
 import SaveTheDateCalendar from "./Calendar";
-import { Section, SectionBackgroundProps } from "./ui";
+import { Section, SectionBackgroundProps, SectionContainer } from "./ui";
 
 interface Props extends SectionBackgroundProps {
   weddingData: WeddingData;
@@ -13,7 +13,9 @@ export default function CalendarSection({
   const { date } = weddingData;
   return (
     <Section bgImageUrl={imageUrl}>
-      <SaveTheDateCalendar date={date} />
+      <SectionContainer>
+        <SaveTheDateCalendar date={date} />
+      </SectionContainer>
     </Section>
   );
 }
