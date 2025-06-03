@@ -20,11 +20,7 @@ export default function HeroSection({ bgImageUrl }: Props) {
           {/* <p className="text-3xl font-heading   ">
             {`${date.day}.${date.month}.${date.year}`}
           </p> */}
-          <img
-            src="/icon-4.png"
-            className="w-auto h-12 sepia invert opacity-50"
-            alt=""
-          />
+          <img src="/icon-5.png" className="w-auto h-12 sepia " alt="" />
         </div>
         <img
           src="/mary.png"
