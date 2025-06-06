@@ -21,7 +21,7 @@ export default function AboutSection({
     <Section bgImageUrl={imageUrl}>
       <SectionTitle>{title}</SectionTitle>
       <SectionContainer className=" md:grid-cols-1 ">
-        <div className="grid gap-5 text-xl">
+        <div className="grid gap-5 text-xl text-center">
           {description.split("\n").map((item, index) => (
             <p key={index} className="block">
               {item}
