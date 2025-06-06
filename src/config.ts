@@ -11,6 +11,6 @@ const config = {
   DEV: import.meta.env.DEV,
   MODE: import.meta.env.MODE,
   NODE_ENV: import.meta.env.NODE_ENV,
-};
+} as const;
 
 export { config };
