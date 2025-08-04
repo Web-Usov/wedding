@@ -12,24 +12,24 @@
   "locations": [
     {
       "name": "Место сбора",
-      "address": "Парк культуры и отдыха имени Ю. А. Гагарина",
-      "description": "Сбор гостей и трансфер до церемонии. Более подробная информация о точке будет позже",
-      "image": "/park-gagarina.jpg",
-      "mapUrl": "https://yandex.ru/maps/-/CHGzrM7b"
+      "address": "ТЦ `Самолет`, Московское ш., 185А",
+      "description": "Угловой вход. Сбор гостей и трансфер до церемонии. ",
+      "image": "/samolet.jpg",
+      "mapUrl": "https://yandex.ru/maps/-/CHdrm80r"
     },
     {
-      "name": "Церемония - top secret",
+      "name": "Церемония",
       "description": "Выездная регистрация и банкет на природе",
-      "address": "...coming soon...",
+      "address": "Район села Черноречье",
       "image": "/priroda.jpg",
-      "mapUrl": "https://yandex.ru/maps/-/CHGzrM7b"
+      "mapUrl": "https://yandex.ru/maps/-/CHdrm2iK"
     }
   ],
   "program": [
     {
       "time": "15:00",
       "event": "Трансфер",
-      "description": "От Парка Гагарина"
+      "description": "От ТЦ `Самолет`"
     },
     {
       "time": "16:00",
@@ -48,8 +48,8 @@
       "event": "coming soon с:"
     },
     {
-      "time": "22:00",
-      "event": "Заключение"
+      "time": "23:00",
+      "event": "Заключение, трансфер до ТЦ `Самолет`"
     }
   ],
   "gallery": [],
